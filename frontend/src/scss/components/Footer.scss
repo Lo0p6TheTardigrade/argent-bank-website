@@ -1,0 +1,6 @@
+@import '../partial';
+.footer-container {
+  .footer {
+    @include flex(row, nowrap, center, initial, initial);
+  }
+}
