@@ -1,0 +1,7 @@
+@import '../partial';
+.header-container {
+  .header {
+    padding: 5px 20px;
+    @include flex(row, nowrap, space-between, center, initial);
+  }
+}
