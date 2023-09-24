@@ -1,9 +1,11 @@
 import React from 'react';
+import '../scss/pages/Error404.scss';
+import Error from '../components/Error';
 
 const Error404 = () => {
   return (
-    <div>
-      <Error404 />
+    <div className="error-page-container">
+      <Error />
     </div>
   );
 };
