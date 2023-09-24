@@ -3,11 +3,11 @@ import '../scss/components/Layout.scss';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = (prop) => {
+const Layout = (props) => {
   return (
     <div className="layout-container">
       <Header />
-      {prop.children}
+      {props.children}
       <Footer />
     </div>
   );

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signin from './pages/Signin';
 import Landing from './pages/Landing';
-import Error from './components/Error';
+import Error404 from './pages/Error404';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           />
           <Route
             path="*"
-            element={<Error />}
+            element={<Error404 />}
           />
         </Routes>
       </BrowserRouter>
