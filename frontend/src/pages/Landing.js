@@ -5,7 +5,6 @@ import Layout from '../components/Layout';
 const Landing = () => {
   return (
     <div className="landing-container">
-      {' '}
       <Layout></Layout>
     </div>
   );

@@ -18,7 +18,7 @@ function App() {
             element={<Signin />}
           />
           <Route
-            path="landing"
+            path="/"
             element={<Landing />}
           />
           <Route
