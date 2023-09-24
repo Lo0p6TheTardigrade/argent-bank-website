@@ -1,0 +1,7 @@
+@mixin flex($value1, $value2, $value3, $value4, $value5) {
+  display: flex;
+  flex-flow: $value1 $value2;
+  justify-content: $value3;
+  align-items: $value4;
+  gap: $value5;
+}

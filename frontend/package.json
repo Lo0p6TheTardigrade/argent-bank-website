@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "sass --watch ./src/scss/components/Banner.scss:./src/css/components/Banner.css -s compressed ./src/scss/components/Error.scss:./src/css/components/Error.css -s compressed ./src/scss/components/Footer.scss:./src/css/components/Footer.css -s compressed ./src/scss/components/Header.scss:./src/css/components/Header.css -s compressed ./src/scss/components/Layout.scss:./src/css/components/Layout.css -s compressed ./src/scss/components/Logo.scss:./src/css/components/Logo.css -s compressed ./src/scss/components/Main.scss:./src/css/components/Main.css -s compressed ./src/scss/components/Navigation.scss:./src/css/components/Navigation.css -s compressed ./src/scss/components/Section.scss:./src/css/components/Section.css -s compressed  ./src/scss/pages/Error404.scss:./src/css/pages/Error404.css -s compressed ./src/scss/pages/Home.scss:./src/css/pages/Home.css -s compressed ./src/scss/pages/Landing.scss:./src/css/pages/Landing.css -s compressed ./src/scss/pages/Signin.scss:./src/css/pages/Signin.css -s compressed"
   },
   "eslintConfig": {
     "extends": [

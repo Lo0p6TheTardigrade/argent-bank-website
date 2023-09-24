@@ -1,0 +1,17 @@
+@import '../partial';
+.navigation-container {
+  .navigation {
+    .nav-list-container {
+      @include flex(row, nowrap, initial, initial, 0.5rem);
+      .nav-list {
+        @include flex(row, nowrap, initial, center, 3px);
+        list-style: none;
+        .user-icon,
+        .sign-out-icon {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}
