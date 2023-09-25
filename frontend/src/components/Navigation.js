@@ -12,17 +12,17 @@ const Navigation = () => {
             <img
               src={userIcon}
               alt="user icon"
-              className="user-icon"
+              className="icon user-icon"
             />
-            <p className="signin-text">Sign In</p>
+            <p className="sign signin-text">Sign In</p>
           </li>
           <li className="nav-list">
             <img
               src={signOutIcon}
               alt="sign out icon"
-              className="sign-out-icon"
+              className="icon sign-out-icon"
             />
-            <p className="signout-text">Sign Out</p>
+            <p className="sign signout-text">Sign Out</p>
           </li>
         </ul>
       </nav>
