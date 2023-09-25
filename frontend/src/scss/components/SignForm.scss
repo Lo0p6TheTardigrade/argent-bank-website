@@ -1,9 +1,8 @@
 @import '../partial';
 .sign-form-container {
-  margin: 0;
   @include flex(column, nowrap, initial, initial, initial);
   background-color: #12002b;
-  min-height: 80vh;
+  min-height: 82vh;
   .sign-form-title-and-user-icon-container {
     @include flex(column, nowrap, initial, center, initial);
     .user-icon {
