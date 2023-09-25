@@ -1,0 +1,29 @@
+@import '../partial';
+.banner-container {
+  .banner {
+    background-image: url('../../assets/bank-tree.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 -50px;
+    height: 300px;
+    position: relative;
+    .card-banner-text {
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: left;
+      background: #fff;
+      width: 200px;
+      position: relative;
+      top: 2rem;
+      .subtitle {
+        margin: 0;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      .text {
+        margin-bottom: 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
