@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"Section.css"}
+{"version":3,"sourceRoot":"","sources":["../../scss/components/Section.scss","../../scss/_partial.scss"],"names":[],"mappings":"AAEE,yDCDA,wBACA,gBDEgC,QCDhC,YDCyC,oBACvC,qFACE,OACA,eACA,iHACE,YACA,0BACA,kBACA,aAEF,6HACE,WACA,kBACA,iBACA","file":"Section.css"}
