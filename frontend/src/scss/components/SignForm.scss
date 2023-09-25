@@ -1,1 +1,63 @@
 @import '../partial';
+.sign-form-container {
+  margin: 0;
+  @include flex(column, nowrap, initial, initial, initial);
+  background-color: #12002b;
+  min-height: 80vh;
+  .sign-form-title-and-user-icon-container {
+    @include flex(column, nowrap, initial, center, initial);
+    .user-icon {
+      width: 16px;
+      height: 16px;
+    }
+    .sign-form-title {
+      margin: 19px 0;
+    }
+  }
+  .sign-form {
+    @include flex(column, nowrap, initial, initial, initial);
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+    .input-wrapper {
+      @include flex(column, nowrap, initial, initial, initial);
+      text-align: left;
+      margin-bottom: 1rem;
+      label {
+        cursor: default;
+        font-weight: bold;
+      }
+      input {
+        padding: 5px;
+        font-size: 1.2rem;
+      }
+    }
+    .input-remember {
+      display: flex;
+      justify-content: flex-start;
+      input {
+        background-color: initial;
+        cursor: default;
+        appearance: auto;
+        box-sizing: border-box;
+        margin: 3px 3px 3px 4px;
+        padding: initial;
+        border: initial;
+      }
+    }
+    .sign-in-button {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      border: solid 1px #00bc77;
+      background-color: #00bc77;
+      color: #fff;
+    }
+  }
+}

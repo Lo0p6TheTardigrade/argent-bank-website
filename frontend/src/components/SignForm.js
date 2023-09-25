@@ -1,13 +1,19 @@
 import React from 'react';
 import '../scss/components/SignForm.scss';
+import userIcon from '../assets/circle-user-solid.svg';
 
 const SignForm = () => {
   return (
     <div className="sign-form-container">
-      <div className="sign-form-title-container">
-        <h1 className="sign-form-title">Sign In</h1>
-      </div>
       <form className="sign-form">
+        <div className="sign-form-title-and-user-icon-container">
+          <img
+            src={userIcon}
+            alt="user icon"
+            className="icon user-icon"
+          />
+          <h1 className="sign-form-title">Sign In</h1>
+        </div>
         <div class="input-wrapper">
           <label for="username">Username</label>
           <input
@@ -29,6 +35,7 @@ const SignForm = () => {
           />
           <label for="remember-me">Remember me</label>
         </div>
+        <button class="sign-in-button">Sign In</button>
       </form>
     </div>
   );
