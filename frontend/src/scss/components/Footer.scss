@@ -1,6 +1,12 @@
 @import '../partial';
 .footer-container {
+  padding: 2rem 0 1.5rem;
   .footer {
-    @include flex(row, nowrap, center, initial, initial);
+    .footer-text {
+      margin: 0;
+      @include flex(row, nowrap, center, center, initial);
+      border-top: 2px solid #ccc;
+      height: 80px;
+    }
   }
 }
