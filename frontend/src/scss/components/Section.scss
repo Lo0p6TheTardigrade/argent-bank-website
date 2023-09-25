@@ -4,7 +4,7 @@
   .features {
     @include flex(column, nowrap, initial, initial, initial);
     .feature-item {
-      flex: 1;
+      @include flex(column, nowrap, initial, center, initial);
       padding: 2.5rem;
       .feature-icon {
         width: 100px;
@@ -16,7 +16,7 @@
         color: #222;
         font-size: 1.25rem;
         font-weight: bold;
-        margin-bottom: 0.5rem;
+        margin: 20px 0 0.5rem 0;
       }
     }
   }
