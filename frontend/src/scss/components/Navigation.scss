@@ -3,16 +3,12 @@
   .navigation {
     .nav-list-container {
       @include flex(row, nowrap, initial, initial, 0.5rem);
-      margin: 0;
       .nav-list {
         @include flex(row, nowrap, initial, center, 3px);
         list-style: none;
         .icon {
           width: 18px;
           height: 18px;
-        }
-        .sign {
-          margin: 0;
         }
       }
     }
