@@ -1,1 +1,1 @@
-.logo-container .logo{max-width:100%;width:200px}/*# sourceMappingURL=Logo.css.map */
+.logo-container{flex-flow:row nowrap;justify-content:initial;align-items:center;gap:initial}.logo-container .logo{max-width:100%;width:200px;height:44px}/*# sourceMappingURL=Logo.css.map */
