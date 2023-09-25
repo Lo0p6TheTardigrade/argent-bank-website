@@ -5,11 +5,11 @@ import SignForm from '../components/SignForm';
 
 const Signin = () => {
   return (
-    <div className="signin-container">
-      <Layout>
+    <Layout>
+      <div className="signin-container">
         <SignForm />
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
