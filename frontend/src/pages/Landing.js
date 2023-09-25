@@ -5,11 +5,11 @@ import Main from '../components/Main';
 
 const Landing = () => {
   return (
-    <div className="landing-container">
-      <Layout>
+    <Layout>
+      <div className="landing-container">
         <Main />
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
