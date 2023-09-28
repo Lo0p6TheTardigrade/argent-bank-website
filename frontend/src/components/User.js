@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../scss/components/User.scss';
 import Button from './Button';
 import Account from './Account';
 
-const User = () => {
-  const [isVisible] = useState(true);
-  const [isVisible2] = useState(true);
-  const [isVisible3] = useState(true);
+const User = (isVisible, isVisible2, isVisible3) => {
   return (
     <div className="section-user-container">
       <section className="section-user">
@@ -32,7 +29,7 @@ const User = () => {
           </div>
         </section>
         <section className="account">
-          <Account isVisible3={isVisible3} />
+          <Account isVisible3={!isVisible3} />
           <div className="account-content-wrapper cta">
             <Button />
           </div>
