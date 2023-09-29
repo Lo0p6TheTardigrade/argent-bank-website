@@ -12,7 +12,9 @@ const loginUser = (credentials) => {
       const responseData = response.data.body.token;
       const token = responseData;
       console.log(token);
-      localStorage.setItem('token', token);
+      // localStorage.setItem('token', token);
+      const tokenJSON = JSON.stringify(token);
+      document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
       window.location = '/home';
     } catch (error) {
       console.log(error);
