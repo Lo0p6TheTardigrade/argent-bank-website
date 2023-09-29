@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../scss/pages/Home.scss';
 import Layout from '../components/Layout';
 import User from '../components/User';
 
-const Home = (isVisible, isVisible2, isVisible3) => {
+const Home = ({ isVisible, isVisible2, isVisible3 }) => {
   return (
     <div className="home-container">
       <Layout>
@@ -17,4 +18,10 @@ const Home = (isVisible, isVisible2, isVisible3) => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  isVisible: state.userReducer.isVisible,
+  isVisible2: state.userReducer.isVisible2,
+  isVisible3: state.userReducer.isVisible3,
+});
+
+export default connect(mapStateToProps)(Home);

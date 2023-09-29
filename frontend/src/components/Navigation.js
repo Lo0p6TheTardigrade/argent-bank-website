@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../scss/components/Navigation.scss';
 import userIcon from '../assets/circle-user-solid.svg';
 import signOutIcon from '../assets/right-from-bracket-solid.svg';
 
-const Navigation = () => {
-  const [isSignIn] = useState(true);
+const Navigation = (isLoggedIn) => {
   return (
     <div className="navigation-container">
       <nav className="navigation">
@@ -20,7 +19,7 @@ const Navigation = () => {
               <p className="sign signin-text">Sign In</p>
             </li>
           </Link>
-          {!isSignIn && (
+          {!isLoggedIn && (
             <Link to="/">
               <li className="nav-list">
                 <img

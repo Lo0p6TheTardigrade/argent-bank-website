@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import '../scss/components/SignForm.scss';
 import userIcon from '../assets/circle-user-solid.svg';
+import loginUser from '../actions/action';
 
 const SignForm = () => {
+  const dispatch = useDispatch();
+
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(credentials));
+  };
+
   return (
     <div className="sign-form-container">
-      <form className="sign-form">
+      <form
+        className="sign-form"
+        onSubmit={handleSubmit}>
         <div className="sign-form-title-and-user-icon-container">
           <img
             src={userIcon}
@@ -14,28 +37,36 @@ const SignForm = () => {
           />
           <h1 className="sign-form-title">Sign In</h1>
         </div>
-        <div class="input-wrapper">
-          <label for="username">Username</label>
+        <div className="input-wrapper">
+          <label htmlFor="email">Username</label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
+            value={credentials.email}
+            onChange={handleInputChange}
           />
         </div>
-        <div class="input-wrapper">
-          <label for="password">Password</label>
+        <div className="input-wrapper">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
+            value={credentials.password}
+            onChange={handleInputChange}
           />
         </div>
-        <div class="input-remember">
+        <div className="input-remember">
           <input
             type="checkbox"
             id="remember-me"
           />
-          <label for="remember-me">Remember me</label>
+          <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button class="sign-in-button">Sign In</button>
+        <button
+          type="submit"
+          className="sign-in-button">
+          Sign In
+        </button>
       </form>
     </div>
   );

@@ -3,7 +3,7 @@ import '../scss/components/User.scss';
 import Button from './Button';
 import Account from './Account';
 
-const User = (isVisible, isVisible2, isVisible3) => {
+const User = ({ isVisible, isVisible2, isVisible3 }) => {
   return (
     <div className="section-user-container">
       <section className="section-user">
@@ -29,7 +29,7 @@ const User = (isVisible, isVisible2, isVisible3) => {
           </div>
         </section>
         <section className="account">
-          <Account isVisible3={!isVisible3} />
+          <Account isVisible3={isVisible3} />
           <div className="account-content-wrapper cta">
             <Button />
           </div>
