@@ -13,6 +13,7 @@ const loginUser = (credentials) => {
       const token = responseData;
       console.log(token);
       localStorage.setItem('token', token);
+      window.location = '/home';
     } catch (error) {
       console.log(error);
       dispatch({
