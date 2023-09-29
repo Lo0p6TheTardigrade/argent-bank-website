@@ -9,17 +9,19 @@ const Navigation = (isLoggedIn) => {
     <div className="navigation-container">
       <nav className="navigation">
         <ul className="nav-list-container">
-          <Link to="/signin">
-            <li className="nav-list">
-              <img
-                src={userIcon}
-                alt="user icon"
-                className="icon user-icon"
-              />
-              <p className="sign signin-text">Sign In</p>
-            </li>
-          </Link>
           {!isLoggedIn && (
+            <Link to="/signin">
+              <li className="nav-list">
+                <img
+                  src={userIcon}
+                  alt="user icon"
+                  className="icon user-icon"
+                />
+                <p className="sign signin-text">Sign In</p>
+              </li>
+            </Link>
+          )}
+          {isLoggedIn && (
             <Link to="/">
               <li className="nav-list">
                 <img
