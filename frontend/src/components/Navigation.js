@@ -9,14 +9,15 @@ import { setLoggedOut } from '../actions/action';
 
 const Navigation = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
+  // const navigate = useNavigate();
 
   const handleSignOut = () => {
     dispatch(setLoggedOut(true));
     dispatch(setLoggedIn(false));
-    navigate('/');
-    console.log(setLoggedOut);
+    window.location.href = '/';
+    // navigate('/');
+    // console.log(setLoggedOut);
   };
 
   // useEffect(() => {
@@ -51,7 +52,6 @@ const Navigation = () => {
       </li>
     </Link>
   );
-  console.log(isLoggedIn);
   return (
     <div className="navigation-container">
       <nav className="navigation">
