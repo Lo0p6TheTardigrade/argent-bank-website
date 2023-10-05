@@ -4,6 +4,7 @@ const initialState = {
   isVisible3: true,
   displayedItems: 3,
   isLoggedIn: false,
+  isLoggedOut: true,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: action.payload,
+      };
+    case 'SET_LOGGED_OUT':
+      return {
+        ...state,
+        isLoggedOut: action.payload,
       };
     default:
       return state;

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import '../scss/components/SignForm.scss';
 import userIcon from '../assets/circle-user-solid.svg';
 import loginUser from '../actions/action';
 
 const SignForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
     email: '',
@@ -19,9 +21,9 @@ const SignForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(credentials));
+    await loginUser(credentials, dispatch, navigate);
   };
 
   return (
