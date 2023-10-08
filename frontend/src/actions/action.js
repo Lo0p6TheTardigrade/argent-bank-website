@@ -1,17 +1,20 @@
 import axios from 'axios';
 
-const loginUser = async (credentials, dispatch, navigate) => {
+let userToken;
+export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
-    console.log(response.data);
 
     const responseData = response.data.body.token;
     const token = responseData;
-    console.log(token);
+    userToken = responseData;
 
-    // localStorage.setItem('token', token);
     const tokenJSON = JSON.stringify(token);
     document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
+
+    profilUser(userToken);
+    // console.log('token', userToken);
+
     dispatch(setLoggedIn(true));
     navigate('/home');
   } catch (error) {
@@ -23,12 +26,41 @@ const loginUser = async (credentials, dispatch, navigate) => {
   }
 };
 
-export default loginUser;
+export let userName;
+
+export const profilUser = async (userToken, dispatch, navigate) => {
+  try {
+    const config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+    console.log('Token:', userToken);
+
+    const response = await axios.post('http://localhost:3001/api/v1/user/profile', config);
+
+    userName = response.data.firstName;
+    console.log('Username:', userName);
+
+    dispatch(setUserName(userName));
+
+    // navigate('/home');
+  } catch (error) {
+    console.log('Erreur lors de la récupération du profil utilisateur :', error);
+  }
+};
 
 export const setDisplayedItems = (items) => {
   return {
     type: 'SET_DISPLAYED_ITEMS',
     payload: items,
+  };
+};
+export const setUserName = (userName) => {
+  return {
+    type: 'SET_USER_NAME',
+    payload: userName,
   };
 };
 

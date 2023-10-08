@@ -4,7 +4,7 @@ import '../scss/components/Navigation.scss';
 import userIcon from '../assets/circle-user-solid.svg';
 import signOutIcon from '../assets/right-from-bracket-solid.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn } from '../actions/action';
+import { setLoggedIn, setUserName, userName } from '../actions/action';
 import { setLoggedOut } from '../actions/action';
 
 const Navigation = () => {
@@ -27,7 +27,7 @@ const Navigation = () => {
   // }, [isLoggedIn, navigate]);
 
   const defaultDisplay = (
-    <Link to="/signin">
+    <Link to="/login">
       <li className="nav-list">
         <img
           src={userIcon}
@@ -43,6 +43,7 @@ const Navigation = () => {
       <li
         className="nav-list"
         onClick={handleSignOut}>
+        <p className="user-name">{userName}</p>
         <img
           src={signOutIcon}
           alt="sign out icon"

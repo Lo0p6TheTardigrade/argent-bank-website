@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/SignForm.scss';
 import userIcon from '../assets/circle-user-solid.svg';
-import loginUser from '../actions/action';
+import { loginUser } from '../actions/action';
 
 const SignForm = () => {
   const dispatch = useDispatch();

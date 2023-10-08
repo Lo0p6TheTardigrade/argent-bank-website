@@ -5,6 +5,7 @@ const initialState = {
   displayedItems: 3,
   isLoggedIn: false,
   isLoggedOut: true,
+  userName: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedOut: action.payload,
+      };
+    case 'SET_USER_NAME':
+      return {
+        ...state,
+        userName: action.payload,
       };
     default:
       return state;
