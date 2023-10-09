@@ -6,6 +6,7 @@ const initialState = {
   isLoggedIn: false,
   isLoggedOut: true,
   userName: '',
+  isOpen: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         userName: action.payload,
+      };
+    case 'SET_IS_OPEN':
+      return {
+        ...state,
+        isOpen: action.payload,
       };
     default:
       return state;

@@ -72,3 +72,9 @@ export const setLoggedOut = (isLoggedOut) => {
     payload: isLoggedOut,
   };
 };
+export const setIsOpen = (isOpen) => {
+  return {
+    type: 'SET_IS_OPEN',
+    payload: isOpen,
+  };
+};

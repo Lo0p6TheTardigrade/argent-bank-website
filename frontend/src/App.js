@@ -6,9 +6,19 @@ import Error404 from './pages/Error404';
 import { Provider } from 'react-redux';
 import store from './index';
 import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import Modal from 'react-modal';
+
+const setModalRoot = () => {
+  const rootElement = document.getElementById('root');
+  Modal.setAppElement(rootElement);
+};
 
 function App() {
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
+  useEffect(() => {
+    setModalRoot();
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>

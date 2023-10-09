@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const Transactions = () => {
+const Transactions = ({ isOpen }) => {
   return (
     <div className="transaction-modal-container">
-      <Modal className="transaction-modal">
+      <Modal
+        className="transaction-modal"
+        isOpen={isOpen}>
         <div className="transaction-modal-top-info-container">
           <div className="transaction-modal-info-cantainer">
             <h3 className="transaction-checking-title">Argent Bank Checking (x3448)</h3>
