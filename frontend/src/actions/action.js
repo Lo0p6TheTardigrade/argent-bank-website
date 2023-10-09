@@ -11,9 +11,8 @@ export const loginUser = async (credentials, dispatch, navigate) => {
 
     const tokenJSON = JSON.stringify(token);
     document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
-    console.log('Token loginUser:', userToken);
-    profilUser(userToken, credentials);
-    // console.log('token', userToken);
+
+    profilUser(userToken, dispatch, credentials);
 
     dispatch(setLoggedIn(true));
     navigate('/home');
@@ -28,7 +27,7 @@ export const loginUser = async (credentials, dispatch, navigate) => {
 
 export let userName;
 
-export const profilUser = async (userToken, dispatch, navigate, credentials) => {
+export const profilUser = async (userToken, dispatch, credentials) => {
   try {
     const config = {
       headers: {
@@ -36,16 +35,12 @@ export const profilUser = async (userToken, dispatch, navigate, credentials) => 
         Authorization: `Bearer ${userToken}`,
       },
     };
-    console.log('Token profileUser:', userToken);
 
     const response = await axios.post('http://localhost:3001/api/v1/user/profile', credentials, config);
 
     userName = response.data.body.firstName;
-    console.log('Username:', userName);
 
-    // dispatch(setUserName(userName));
-
-    // navigate('/home');
+    dispatch(setUserName(userName));
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }

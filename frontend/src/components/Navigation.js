@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import '../scss/components/Navigation.scss';
 import userIcon from '../assets/circle-user-solid.svg';
 import signOutIcon from '../assets/right-from-bracket-solid.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn, setUserName, userName } from '../actions/action';
+import { setLoggedIn } from '../actions/action';
 import { setLoggedOut } from '../actions/action';
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
+  const userName = useSelector((state) => state.userReducer.userName);
   // const navigate = useNavigate();
 
   const handleSignOut = () => {
