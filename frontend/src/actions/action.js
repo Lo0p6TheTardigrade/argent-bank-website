@@ -11,8 +11,8 @@ export const loginUser = async (credentials, dispatch, navigate) => {
 
     const tokenJSON = JSON.stringify(token);
     document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
-
-    profilUser(userToken);
+    console.log('Token loginUser:', userToken);
+    profilUser(userToken, credentials);
     // console.log('token', userToken);
 
     dispatch(setLoggedIn(true));
@@ -28,7 +28,7 @@ export const loginUser = async (credentials, dispatch, navigate) => {
 
 export let userName;
 
-export const profilUser = async (userToken, dispatch, navigate) => {
+export const profilUser = async (userToken, dispatch, navigate, credentials) => {
   try {
     const config = {
       headers: {
@@ -36,14 +36,14 @@ export const profilUser = async (userToken, dispatch, navigate) => {
         Authorization: `Bearer ${userToken}`,
       },
     };
-    console.log('Token:', userToken);
+    console.log('Token profileUser:', userToken);
 
-    const response = await axios.post('http://localhost:3001/api/v1/user/profile', config);
+    const response = await axios.post('http://localhost:3001/api/v1/user/profile', credentials, config);
 
-    userName = response.data.firstName;
+    userName = response.data.body.firstName;
     console.log('Username:', userName);
 
-    dispatch(setUserName(userName));
+    // dispatch(setUserName(userName));
 
     // navigate('/home');
   } catch (error) {
