@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import Operation from './Operation';
 
 const Transactions = ({ isOpen }) => {
   return (
@@ -13,12 +14,26 @@ const Transactions = ({ isOpen }) => {
             <p className="transaction-balance">$48,098.43</p>
             <p className="tarsaction-balance-info">Availiable balance</p>
           </div>
-          <div className="transaction-balance-cross-container">
-            <img
-              src=""
-              alt="cross logo"
-              className="transaction-balance-cross"
-            />
+        </div>
+        <div className="transaction-balance-cross-container">
+          <img
+            src="cross close"
+            alt="cross logo"
+            className="transaction-balance-cross"
+          />
+        </div>
+        <div className="transaction-modal-bottom-container">
+          <div className="transaction-modal-operation-title">
+            <p className="transaction-by-date">Date</p>
+            <p className="transaction-by-description">Description</p>
+            <p className="transaction-by-amount">Aùount</p>
+            <p className="transaction-by-balance">Balance</p>
+          </div>
+          <div className="transaction-operation">
+            <Operation />
+            <Operation />
+            <Operation />
+            <Operation />
           </div>
         </div>
       </Modal>
