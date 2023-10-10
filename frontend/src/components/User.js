@@ -20,7 +20,9 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
           <br />
           {firstName} {lastName}!
         </h1>
-        <button className="edit-button">Edit Name</button>
+        <Link to="/profile">
+          <button className="edit-button">Edit Name</button>
+        </Link>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <article className="account">
