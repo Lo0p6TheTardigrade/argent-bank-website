@@ -26,6 +26,8 @@ export const loginUser = async (credentials, dispatch, navigate) => {
 };
 
 export let userName;
+export let firstName;
+export let lastName;
 
 export const profilUser = async (userToken, dispatch, credentials) => {
   try {
@@ -38,9 +40,16 @@ export const profilUser = async (userToken, dispatch, credentials) => {
 
     const response = await axios.post('http://localhost:3001/api/v1/user/profile', credentials, config);
 
-    userName = response.data.body.firstName;
+    userName = response.data.body.userName;
+    firstName = response.data.body.firstName;
+    lastName = response.data.body.lastName;
+
+    console.log(userName, firstName, lastName);
+    console.log('dispatching', dispatch(setUserName(userName)), dispatch(setFirstName(firstName)), dispatch(setLastName(lastName)));
 
     dispatch(setUserName(userName));
+    dispatch(setFirstName(firstName));
+    dispatch(setLastName(lastName));
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }
@@ -56,6 +65,18 @@ export const setUserName = (userName) => {
   return {
     type: 'SET_USER_NAME',
     payload: userName,
+  };
+};
+export const setFirstName = (firstName) => {
+  return {
+    type: 'SET_FIRST_NAME',
+    payload: firstName,
+  };
+};
+export const setLastName = (lastName) => {
+  return {
+    type: 'SET_LAST_NAME',
+    payload: lastName,
   };
 };
 

@@ -3,8 +3,13 @@ import '../scss/components/User.scss';
 import Button from './Button';
 import Account from './Account';
 import { Link } from 'react-router-dom';
+// import { firstName, lastName } from '../actions/action';
+import { useSelector } from 'react-redux';
 
 const User = ({ isVisible, isVisible2, isVisible3 }) => {
+  const firstName = useSelector((state) => state.userReducer.firstName);
+  const lastName = useSelector((state) => state.userReducer.lastName);
+  console.log(firstName, lastName);
   return (
     <div className="section-user-container">
       <section className="section-user">
@@ -12,7 +17,7 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {firstName} {lastName}!
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>

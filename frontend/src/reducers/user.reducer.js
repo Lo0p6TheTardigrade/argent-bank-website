@@ -6,6 +6,8 @@ const initialState = {
   isLoggedIn: false,
   isLoggedOut: true,
   userName: '',
+  firstName: '',
+  lastName: '',
   isOpen: false,
 };
 
@@ -30,6 +32,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         userName: action.payload,
+      };
+    case 'SET_FIRST_NAME':
+      return {
+        ...state,
+        firstName: action.payload,
+      };
+    case 'SET_LAST_NAME':
+      return {
+        ...state,
+        lastName: action.payload,
       };
     case 'SET_IS_OPEN':
       return {
