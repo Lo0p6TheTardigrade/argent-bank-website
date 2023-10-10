@@ -25,8 +25,8 @@ const Error = () => {
   );
   return (
     <div className="error-container">
-      {isLoggedIn && unauthorized}
-      {<Route to="*" /> && badRequest}
+      {!isLoggedIn && unauthorized}
+      {!(<Route to="*" />) && badRequest}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './index';
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
+import Profile from './pages/Profile';
 
 const setModalRoot = () => {
   const rootElement = document.getElementById('root');
@@ -33,6 +34,10 @@ function App() {
             <Route
               path="/login"
               element={<Signin />}
+            />
+            <Route
+              path="/profile"
+              element={<Profile />}
             />
             <Route
               path="*"
