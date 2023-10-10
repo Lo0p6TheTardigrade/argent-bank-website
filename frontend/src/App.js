@@ -24,17 +24,14 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <Routes>
-            {isLoggedIn ? (
-              <Route
-                path="/home"
-                element={<Home />}
-              />
-            ) : (
-              <Route
-                path="/"
-                element={<Landing />}
-              />
-            )}
+            <Route
+              path="/home"
+              element={<Home />}
+            />
+            <Route
+              path="/"
+              element={<Landing />}
+            />
             <Route
               path="/login"
               element={<Signin />}
