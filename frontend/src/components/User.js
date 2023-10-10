@@ -2,6 +2,7 @@ import React from 'react';
 import '../scss/components/User.scss';
 import Button from './Button';
 import Account from './Account';
+import Error from './Error';
 import { Link } from 'react-router-dom';
 // import { firstName, lastName } from '../actions/action';
 import { useSelector } from 'react-redux';
@@ -42,19 +43,7 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
       </article>
     </section>
   );
-  const bottomComponent = (
-    <section className="section-user-not-logged">
-      <div className="user-not-logged-title-container">
-        <h1 className="user-not-logged-title">Erreur</h1>
-      </div>
-      <div className="user-not-logged-info-container">
-        <p className="user-not-logged-info">Vous n'êtes pas connecté</p>
-      </div>
-      <div className="user-not-logged-link-container">
-        <Link to="/login">Cliquez ici pour vous connecter</Link>
-      </div>
-    </section>
-  );
+  const bottomComponent = <Error />;
   return <div className="section-user-container">{isLoggedIn ? topComponent : bottomComponent}</div>;
 };
 
