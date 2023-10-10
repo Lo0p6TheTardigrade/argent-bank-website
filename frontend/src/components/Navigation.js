@@ -12,21 +12,12 @@ const Navigation = () => {
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const userName = useSelector((state) => state.userReducer.userName);
   console.log(userName);
-  // const navigate = useNavigate();
 
   const handleSignOut = () => {
     dispatch(setLoggedOut(true));
     dispatch(setLoggedIn(false));
     window.location.href = '/';
-    // navigate('/');
-    // console.log(setLoggedOut);
   };
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate('/');
-  //   }
-  // }, [isLoggedIn, navigate]);
 
   const defaultDisplay = (
     <Link to="/login">
@@ -58,37 +49,7 @@ const Navigation = () => {
   return (
     <div className="navigation-container">
       <nav className="navigation">
-        <ul className="nav-list-container">
-          {!isLoggedIn ? defaultDisplay : signoutDisplayed}
-          {/* {!isLoggedIn ? (
-            <Link
-              to="/signin"
-              // onClick={handleSignIn}
-            >
-              <li className="nav-list">
-                <img
-                  src={userIcon}
-                  alt="user icon"
-                  className="icon user-icon"
-                />
-                <p className="sign signin-text">Sign In</p>
-              </li>
-            </Link>
-          ) : (
-            <Link>
-              <li
-                className="nav-list"
-                onClick={handleSignOut}>
-                <img
-                  src={signOutIcon}
-                  alt="sign out icon"
-                  className="icon sign-out-icon"
-                />
-                <p className="sign signout-text">Sign Out</p>
-              </li>
-            </Link>
-          )} */}
-        </ul>
+        <ul className="nav-list-container">{!isLoggedIn ? defaultDisplay : signoutDisplayed}</ul>
       </nav>
     </div>
   );
