@@ -1,1 +1,1 @@
-.header-container .header{padding:5px 20px;flex-flow:row nowrap;justify-content:space-between;align-items:center;gap:initial}/*# sourceMappingURL=Header.css.map */
+.header-container .header{padding:5px 20px;display:flex;flex-flow:row nowrap;justify-content:space-between;align-items:center;gap:initial}/*# sourceMappingURL=Header.css.map */

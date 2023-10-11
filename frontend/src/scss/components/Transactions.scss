@@ -1,0 +1,36 @@
+@import '../partial';
+.transaction-modal-container {
+  margin: 40px 18px 0;
+  @include flex(column, nowrap, initial, initial, 1rem);
+  .top-box {
+    @include flex(row, nowrap, space-between, initial, initial);
+    @include card-balance(map-get($color-map, soft-black));
+    .transaction-modal-top-info-container {
+      .transaction-checking-title {
+        @include card-account-transaction-title;
+      }
+      .transaction-balance {
+        @include card-account-transaction-balance;
+      }
+      .transaction-checking-title,
+      .transaction-balance,
+      .transaction-balance-info {
+        color: map-get($color-map, soft-white);
+      }
+    }
+  }
+
+  .transaction-balance-cross-container {
+    .transaction-balance-cross {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  .transaction-modal-operation-title {
+    @include flex(row, nowrap, space-around, initial, 1rem);
+  }
+}
+.transaction-modal-bottom-container {
+  margin-top: 10px;
+  @extend .transaction-modal-container;
+}

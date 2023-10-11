@@ -5,3 +5,24 @@
   align-items: $value4;
   gap: $value5;
 }
+@mixin card-account-transaction-title {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+@mixin card-account-transaction-balance {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+@mixin card-balance($value) {
+  margin: 0 63px;
+  padding: 18px;
+  border-radius: 6px;
+  background: $value;
+}
+$color-map: (
+  soft-black: #2f2f2f,
+  soft-white: #ffffff,
+);

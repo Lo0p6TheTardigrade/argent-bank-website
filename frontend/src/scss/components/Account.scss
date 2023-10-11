@@ -1,17 +1,23 @@
 @import '../partial';
-.account-content-wrapper {
-  @include flex(row, nowrap, space-between, center, initial);
-  .account-text-info-balance {
-    .account-title {
-      margin: 0;
-      padding: 0;
-      font-size: 1rem;
-      font-weight: normal;
-    }
-    .account-amount {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
+.account {
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  @include flex(row, nowrap, space-between, initial, initial);
+  border: 1px solid black;
+  background-color: #fff;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+  .account-content-wrapper {
+    @include flex(row, nowrap, space-between, center, initial);
+    .account-text-info-balance {
+      .account-title {
+        @include card-account-transaction-title;
+      }
+      .account-amount {
+        @include card-account-transaction-balance;
+      }
     }
   }
 }
