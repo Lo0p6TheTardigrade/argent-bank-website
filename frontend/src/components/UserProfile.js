@@ -1,7 +1,6 @@
 import React from 'react';
 import '../scss/components/UserProfile.scss';
 import Button from './Button';
-import Transactions from './Transactions';
 import Account from './Account';
 import { useSelector } from 'react-redux';
 
