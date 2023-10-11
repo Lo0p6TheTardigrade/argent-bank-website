@@ -4,6 +4,7 @@ import Transactions from './Transactions';
 import { setIsOpen } from '../actions/action';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/';
+import { Link } from 'react-router-dom';
 
 const Button = ({ isVisible, isVisible2, isVisible3 }) => {
   const isOpen = useSelector((state) => state.userReducer.isOpen);
@@ -32,12 +33,14 @@ const Button = ({ isVisible, isVisible2, isVisible3 }) => {
         </button>
       )}
       {isVisible3 && (
-        <button
-          className="cancel-button"
-          // onClick={}
-        >
-          Cancel
-        </button>
+        <Link to="/home">
+          <button
+            className="cancel-button"
+            // onClick={}
+          >
+            Cancel
+          </button>
+        </Link>
       )}
       {isOpen && <Transactions isOpen={isOpen} />}
     </div>

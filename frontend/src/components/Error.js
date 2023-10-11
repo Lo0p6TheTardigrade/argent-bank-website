@@ -14,7 +14,12 @@ const Error = () => {
         <p className="user-not-logged-info">Vous n'êtes pas connecté</p>
       </div>
       <div className="user-not-logged-link-container">
-        <Link to="/login">Cliquez ici pour vous connecter</Link>
+        <div className="user-not-logged-link-go-login">
+          <Link to="/login">Cliquez ici pour vous connecter</Link>
+        </div>
+        <div className="user-not-logged-link-go-home">
+          <Link to="/">Retourner à l'acceuil</Link>
+        </div>
       </div>
     </section>
   );
