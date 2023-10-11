@@ -1,6 +1,5 @@
 import React from 'react';
 import '../scss/components/Account.scss';
-import carret from '../assets/chevron-right-solid.svg';
 
 const Account = ({ isVisible, isVisible2, isVisible3 }) => {
   return (
