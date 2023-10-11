@@ -1,1 +1,17 @@
 @import '../partial';
+.account-content-wrapper {
+  @include flex(row, nowrap, space-between, center, initial);
+  .account-text-info-balance {
+    .account-title {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    .account-amount {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
+}
