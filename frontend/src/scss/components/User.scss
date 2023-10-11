@@ -27,7 +27,7 @@
       margin: 0 auto;
       margin-bottom: 2rem;
       padding: 1.5rem;
-      @include flex(column, nowrap, space-between, initial, initial);
+      @include flex(row, nowrap, space-between, initial, initial);
       border: 1px solid black;
       background-color: #fff;
       text-align: left;

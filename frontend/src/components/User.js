@@ -28,19 +28,19 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
       <article className="account">
         <Account isVisible={isVisible} />
         <div className="account-content-wrapper cta">
-          <Button />
+          <Button isVisible={isVisible} />
         </div>
       </article>
       <article className="account">
         <Account isVisible2={isVisible2} />
         <div className="account-content-wrapper cta">
-          <Button />
+          <Button isVisible={isVisible} />
         </div>
       </article>
       <article className="account">
         <Account isVisible3={isVisible3} />
         <div className="account-content-wrapper cta">
-          <Button />
+          <Button isVisible={isVisible} />
         </div>
       </article>
     </section>
