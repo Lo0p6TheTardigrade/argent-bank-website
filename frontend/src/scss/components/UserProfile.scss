@@ -1,0 +1,54 @@
+@import '../partial';
+.user-profile-container {
+  @include flex(column, nowrap, initial, center, initial);
+  //   .user-profile-title-container {
+  //     .user-profile-title {
+  //     }
+  //   }
+  .user-profile-edit-form {
+    @include flex(column, nowrap, initial, center, initial);
+    .user-profile-edit-form-input-container {
+      padding: 9px 9px 9px 13px;
+      @include flex(column, nowrap, initial, center, 9px);
+      .user-profile-edit-label {
+        @include flex(row, nowrap, initial, center, 9px);
+      }
+    }
+    .user-profile-edit-form-button-container {
+      @include flex(row, nowrap, initial, center, 9px);
+      .btn-container {
+        width: 100%;
+        button {
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          padding: 9px;
+          font-weight: bold;
+          border-color: #00bc77;
+          background-color: #00bc77;
+          color: white;
+          width: 130px;
+        }
+      }
+    }
+  }
+}
+.account-container-insert {
+  @include flex(column, nowrap, initial, initial, 9px);
+  width: 100%;
+  .account-container {
+    margin: 0 63px;
+    padding: 18px;
+    border-radius: 6px;
+    background: #2f2f2f;
+    .account-content-wrapper {
+      .account-title,
+      .account-amount,
+      .account-amount-description {
+        color: white;
+      }
+    }
+  }
+}
+.footer-container {
+  border: 0;
+}

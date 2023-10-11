@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 const Profile = () => {
   return (
     <Layout>
-      <div className="profile-conatiner">
+      <div className="profile-container">
         <UserProfile />
       </div>
     </Layout>
