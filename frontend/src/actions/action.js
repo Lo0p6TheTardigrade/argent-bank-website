@@ -126,3 +126,21 @@ export const setIsOpen = (isOpen) => {
     payload: isOpen,
   };
 };
+export const setModal1IsOpen = (modal1IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_1',
+    payload: modal1IsOpen,
+  };
+};
+export const setModal2IsOpen = (modal2IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_2',
+    payload: modal2IsOpen,
+  };
+};
+export const setModal3IsOpen = (modal3IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_3',
+    payload: modal3IsOpen,
+  };
+};

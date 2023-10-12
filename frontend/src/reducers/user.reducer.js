@@ -9,6 +9,9 @@ const initialState = {
   firstName: '',
   lastName: '',
   isOpen: false,
+  modal1IsOpen: false,
+  modal2IsOpen: false,
+  modal3IsOpen: false,
   email: localStorage.getItem('email'),
   password: localStorage.getItem('password'),
   token: localStorage.getItem('token'),
@@ -50,6 +53,21 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isOpen: action.payload,
+      };
+    case 'SET_IS_OPEN_MODAL_1':
+      return {
+        ...state,
+        modal1IsOpen: action.payload,
+      };
+    case 'SET_IS_OPEN_MODAL_2':
+      return {
+        ...state,
+        modal2IsOpen: action.payload,
+      };
+    case 'SET_IS_OPEN_MODAL_3':
+      return {
+        ...state,
+        modal3IsOpen: action.payload,
       };
     case 'SET_EMAIL':
       return {
