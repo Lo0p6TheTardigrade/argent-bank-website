@@ -41,6 +41,7 @@
     border-radius: 6px;
     background: #2f2f2f;
     .account-content-wrapper {
+      @include flex(row, nowrap, space-between, center, initial);
       .account-title,
       .account-amount,
       .account-amount-description {
