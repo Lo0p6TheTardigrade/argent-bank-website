@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 let userToken;
+function userCredentials(credentials, token) {
+  localStorage.setItem('email', credentials.email);
+  localStorage.setItem('password', credentials.password);
+  localStorage.setItem('token', token);
+}
 export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
@@ -8,6 +13,8 @@ export const loginUser = async (credentials, dispatch, navigate) => {
     const responseData = response.data.body.token;
     const token = responseData;
     userToken = responseData;
+    console.log('credential', credentials);
+    userCredentials(credentials, token);
 
     const tokenJSON = JSON.stringify(token);
     document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
@@ -46,10 +53,30 @@ export const profilUser = async (userToken, dispatch, credentials) => {
 
     console.log(userName, firstName, lastName);
     console.log('dispatching', dispatch(setUserName(userName)), dispatch(setFirstName(firstName)), dispatch(setLastName(lastName)));
-
+    // updateProfilUser(userName, userToken);
     dispatch(setUserName(userName));
     dispatch(setFirstName(firstName));
     dispatch(setLastName(lastName));
+  } catch (error) {
+    console.log('Erreur lors de la récupération du profil utilisateur :', error);
+  }
+};
+export const updateProfilUser = async (userToken, dispatch, userName) => {
+  try {
+    const config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${userToken}`,
+      },
+      body: userName,
+    };
+
+    const response = await axios.put('http://localhost:3001/api/v1/user/profile', config);
+
+    userName = response.data.body.userName;
+    console.log('dispatching', dispatch(setUserName(userName)), dispatch(setFirstName(firstName)), dispatch(setLastName(lastName)));
+
+    dispatch(setUserName(userName));
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }

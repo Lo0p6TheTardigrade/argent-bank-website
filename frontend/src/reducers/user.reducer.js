@@ -9,6 +9,9 @@ const initialState = {
   firstName: '',
   lastName: '',
   isOpen: false,
+  email: localStorage.getItem('email'),
+  password: localStorage.getItem('password'),
+  token: localStorage.getItem('token'),
 };
 
 const userReducer = (state = initialState, action) => {
@@ -47,6 +50,21 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isOpen: action.payload,
+      };
+    case 'SET_EMAIL':
+      return {
+        ...state,
+        email: action.payload,
+      };
+    case 'SET_PASSWORD':
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case 'SET_TOKEN':
+      return {
+        ...state,
+        token: action.payload,
       };
     default:
       return state;
