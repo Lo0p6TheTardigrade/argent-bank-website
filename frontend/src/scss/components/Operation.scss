@@ -1,0 +1,9 @@
+@import '../partial';
+.operation-container {
+  width: 100%;
+  display: inherit;
+  .operation {
+    margin: 0 63px;
+    @include flex(row, nowrap, space-between, initial, 1rem);
+  }
+}
