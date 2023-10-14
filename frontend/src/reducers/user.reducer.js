@@ -12,9 +12,12 @@ const initialState = {
   modal1IsOpen: false,
   modal2IsOpen: false,
   modal3IsOpen: false,
-  email: localStorage.getItem('email'),
-  password: localStorage.getItem('password'),
-  token: localStorage.getItem('token'),
+  balance: '',
+  seller: '',
+  amountIN: '',
+  amountOUT: '',
+  buyArticles: '',
+  operationDate: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -69,20 +72,35 @@ const userReducer = (state = initialState, action) => {
         ...state,
         modal3IsOpen: action.payload,
       };
-    case 'SET_EMAIL':
+    case 'SET_BALANCE':
       return {
         ...state,
-        email: action.payload,
+        balance: action.payload,
       };
-    case 'SET_PASSWORD':
+    case 'SET_SELLER':
       return {
         ...state,
-        password: action.payload,
+        seller: action.payload,
       };
-    case 'SET_TOKEN':
+    case 'SET_AMOUNT_IN':
       return {
         ...state,
-        token: action.payload,
+        amountIN: action.payload,
+      };
+    case 'SET_AMOUNT_OUT':
+      return {
+        ...state,
+        amountOUT: action.payload,
+      };
+    case 'SET_BUY_ARTICLE':
+      return {
+        ...state,
+        buyArticles: action.payload,
+      };
+    case 'SET_OPERATION_DATE':
+      return {
+        ...state,
+        operationDate: action.payload,
       };
     default:
       return state;

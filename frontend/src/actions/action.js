@@ -1,11 +1,6 @@
 import axios from 'axios';
 
 let userToken;
-function userCredentials(credentials, token) {
-  localStorage.setItem('email', credentials.email);
-  localStorage.setItem('password', credentials.password);
-  localStorage.setItem('token', token);
-}
 export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
@@ -14,7 +9,6 @@ export const loginUser = async (credentials, dispatch, navigate) => {
     const token = responseData;
     userToken = responseData;
     console.log('credential', credentials);
-    userCredentials(credentials, token);
 
     const tokenJSON = JSON.stringify(token);
     document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
@@ -36,6 +30,13 @@ export let userName;
 export let firstName;
 export let lastName;
 
+export let balance;
+export let seller;
+export let amountIN;
+export let amountOUT;
+export let buyArticles;
+export let operationDate;
+
 export const profilUser = async (userToken, dispatch, credentials) => {
   try {
     const config = {
@@ -50,13 +51,24 @@ export const profilUser = async (userToken, dispatch, credentials) => {
     userName = response.data.body.userName;
     firstName = response.data.body.firstName;
     lastName = response.data.body.lastName;
+    balance = response.data.body.accountBalance.bank.balance;
+    seller = response.data.body.accountBalance.operationOUTPUT.paid.description.seller;
+    amountIN = response.data.body.accountBalance.operationINPUT.receive.amount;
+    amountOUT = response.data.body.accountBalance.operationOUTPUT.paid.amount;
+    buyArticles = response.data.body.accountBalance.operationOUTPUT.paid.description.article;
+    operationDate = response.data.body.accountBalance.operationOUTPUT.paid.date;
+    console.log(response.data.body.accountBalance);
 
-    console.log(userName, firstName, lastName);
-    console.log('dispatching', dispatch(setUserName(userName)), dispatch(setFirstName(firstName)), dispatch(setLastName(lastName)));
     // updateProfilUser(userName, userToken);
     dispatch(setUserName(userName));
     dispatch(setFirstName(firstName));
     dispatch(setLastName(lastName));
+    dispatch(setBalance(balance));
+    dispatch(setSeller(seller));
+    dispatch(setAmountIN(amountIN));
+    dispatch(setAmountOUT(amountOUT));
+    dispatch(setBuyArticle(buyArticles));
+    dispatch(setOperationDate(operationDate));
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }
@@ -142,5 +154,41 @@ export const setModal3IsOpen = (modal3IsOpen) => {
   return {
     type: 'SET_IS_OPEN_MODAL_3',
     payload: modal3IsOpen,
+  };
+};
+export const setBalance = (balance) => {
+  return {
+    type: 'SET_BALANCE',
+    payload: balance,
+  };
+};
+export const setSeller = (seller) => {
+  return {
+    type: 'SET_SELLER',
+    payload: seller,
+  };
+};
+export const setAmountIN = (amountIN) => {
+  return {
+    type: 'SET_AMOUNT_IN',
+    payload: amountIN,
+  };
+};
+export const setAmountOUT = (amountOUT) => {
+  return {
+    type: 'SET_AMOUNT_OUT',
+    payload: amountOUT,
+  };
+};
+export const setBuyArticle = (buyArticles) => {
+  return {
+    type: 'SET_BUY_ARTICLE',
+    payload: buyArticles,
+  };
+};
+export const setOperationDate = (operationDate) => {
+  return {
+    type: 'SET_OPERATION_DATE',
+    payload: operationDate,
   };
 };

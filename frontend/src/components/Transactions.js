@@ -3,11 +3,12 @@ import Modal from 'react-modal';
 import '../scss/components/Transactions.scss';
 import Operation from './Operation';
 import { setIsOpen } from '../actions/action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Layout from './Layout';
 
 const Transactions = ({ isOpen }) => {
   const dispatch = useDispatch();
+  let balance = useSelector((state) => state.userReducer.balance);
   const handleButtonClick = () => {
     dispatch(setIsOpen(!isOpen));
   };
@@ -21,7 +22,7 @@ const Transactions = ({ isOpen }) => {
             <div className="transaction-modal-top-info-container">
               <div className="transaction-modal-info-cantainer">
                 <h3 className="transaction-checking-title">Argent Bank Checking (x3448)</h3>
-                <p className="transaction-balance">$48,098.43</p>
+                <p className="transaction-balance">${balance}</p>
                 <p className="transaction-balance-info">Availiable balance</p>
               </div>
             </div>
