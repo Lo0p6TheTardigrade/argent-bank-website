@@ -59,20 +59,22 @@ export const profilUser = async (userToken, dispatch, credentials) => {
     operationDate = response.data.body.accountBalance.operationOUTPUT.paid.date;
     console.log(response.data.body.accountBalance);
 
-    // updateProfilUser(userName, userToken);
-    dispatch(setUserName(userName));
-    dispatch(setFirstName(firstName));
-    dispatch(setLastName(lastName));
-    dispatch(setBalance(balance));
-    dispatch(setSeller(seller));
-    dispatch(setAmountIN(amountIN));
-    dispatch(setAmountOUT(amountOUT));
-    dispatch(setBuyArticle(buyArticles));
-    dispatch(setOperationDate(operationDate));
+    dispatchState(dispatch);
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }
 };
+function dispatchState(dispatch) {
+  dispatch(setUserName(userName));
+  dispatch(setFirstName(firstName));
+  dispatch(setLastName(lastName));
+  dispatch(setBalance(balance));
+  dispatch(setSeller(seller));
+  dispatch(setAmountIN(amountIN));
+  dispatch(setAmountOUT(amountOUT));
+  dispatch(setBuyArticle(buyArticles));
+  dispatch(setOperationDate(operationDate));
+}
 export const updateProfilUser = async (userToken, dispatch, userName) => {
   try {
     const config = {

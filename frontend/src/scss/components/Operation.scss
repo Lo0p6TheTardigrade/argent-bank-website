@@ -1,9 +1,14 @@
 @import '../partial';
 .operation-container {
   width: 100%;
-  display: inherit;
+  @include flex(row, nowrap, space-between, initial, initial);
   .operation {
     margin: 0 63px;
-    @include flex(row, nowrap, space-between, initial, 1rem);
+    @include flex(row, nowrap, space-between, center, 1rem);
+    width: 80%;
+  }
+  .carret-down-container {
+    display: flex;
+    flex-flow: column;
   }
 }
