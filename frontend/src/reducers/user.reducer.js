@@ -18,9 +18,9 @@ const initialState = {
   amountOUT: '',
   buyArticles: '',
   operationDate: '',
-  button1: true,
-  button2: true,
-  button3: true,
+  button1IsVisible: true,
+  button2IsVisible: true,
+  button3IsVisible: true,
 };
 
 const userReducer = (state = initialState, action) => {
