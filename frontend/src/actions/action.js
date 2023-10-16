@@ -194,3 +194,21 @@ export const setOperationDate = (operationDate) => {
     payload: operationDate,
   };
 };
+export const setButton1 = (button1) => {
+  return {
+    type: 'SET_OPERATION_DATE',
+    payload: button1,
+  };
+};
+export const setButton2 = (button2) => {
+  return {
+    type: 'SET_OPERATION_DATE',
+    payload: button2,
+  };
+};
+export const setButton3 = (button3) => {
+  return {
+    type: 'SET_OPERATION_DATE',
+    payload: button3,
+  };
+};

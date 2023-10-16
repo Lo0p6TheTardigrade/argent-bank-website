@@ -18,6 +18,9 @@ const initialState = {
   amountOUT: '',
   buyArticles: '',
   operationDate: '',
+  button1: true,
+  button2: true,
+  button3: true,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -101,6 +104,21 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         operationDate: action.payload,
+      };
+    case 'SET_BUTTON_1':
+      return {
+        ...state,
+        button1: action.payload,
+      };
+    case 'SET_BUTTON_2':
+      return {
+        ...state,
+        button2: action.payload,
+      };
+    case 'SET_BUTTON_3':
+      return {
+        ...state,
+        button3: action.payload,
       };
     default:
       return state;
