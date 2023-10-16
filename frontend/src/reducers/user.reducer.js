@@ -105,20 +105,20 @@ const userReducer = (state = initialState, action) => {
         ...state,
         operationDate: action.payload,
       };
-    case 'SET_BUTTON_1':
+    case 'SET_BUTTON_1_IS_VISIBLE':
       return {
         ...state,
-        button1: action.payload,
+        button1IsVisble: action.payload,
       };
-    case 'SET_BUTTON_2':
+    case 'SET_BUTTON_2_IS_VISIBLE':
       return {
         ...state,
-        button2: action.payload,
+        button2IsVisble: action.payload,
       };
-    case 'SET_BUTTON_3':
+    case 'SET_BUTTON_3_IS_VISIBLE':
       return {
         ...state,
-        button3: action.payload,
+        button3IsVisble: action.payload,
       };
     default:
       return state;
