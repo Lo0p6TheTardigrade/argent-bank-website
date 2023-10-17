@@ -196,19 +196,19 @@ export const setOperationDate = (operationDate) => {
 };
 export const setButton1IsVisible = (button1IsVisible) => {
   return {
-    type: 'SET_OPERATION_DATE',
+    type: 'SET_BUTTON_1_IS_VISIBLE',
     payload: button1IsVisible,
   };
 };
 export const setButton2IsVisible = (button2IsVisible) => {
   return {
-    type: 'SET_OPERATION_DATE',
+    type: 'SET_BUTTON_2_IS_VISIBLE',
     payload: button2IsVisible,
   };
 };
 export const setButton3IsVisible = (button3IsVisible) => {
   return {
-    type: 'SET_OPERATION_DATE',
+    type: 'SET_BUTTON_3_IS_VISIBLE',
     payload: button3IsVisible,
   };
 };
