@@ -13,6 +13,8 @@ const initialState = {
   modal2IsOpen: false,
   modal3IsOpen: false,
   balance: '',
+  saving: '',
+  card: '',
   seller: '',
   amountIN: '',
   amountOUT: '',
@@ -79,6 +81,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: action.payload,
+      };
+    case 'SET_SAVING':
+      return {
+        ...state,
+        saving: action.payload,
+      };
+    case 'SET_CARD':
+      return {
+        ...state,
+        card: action.payload,
       };
     case 'SET_SELLER':
       return {

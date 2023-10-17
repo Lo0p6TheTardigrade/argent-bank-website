@@ -31,6 +31,8 @@ export let firstName;
 export let lastName;
 
 export let balance;
+export let saving;
+export let card;
 export let seller;
 export let amountIN;
 export let amountOUT;
@@ -52,6 +54,9 @@ export const profilUser = async (userToken, dispatch, credentials) => {
     firstName = response.data.body.firstName;
     lastName = response.data.body.lastName;
     balance = response.data.body.accountBalance.bank.balance;
+    saving = response.data.body.accountBalance.bank.saving;
+    card = response.data.body.accountBalance.bank.card;
+    console.log('saving:', saving, 'card:', card);
     seller = response.data.body.accountBalance.operationOUTPUT.paid.description.seller;
     amountIN = response.data.body.accountBalance.operationINPUT.receive.amount;
     amountOUT = response.data.body.accountBalance.operationOUTPUT.paid.amount;
@@ -69,6 +74,8 @@ function dispatchState(dispatch) {
   dispatch(setFirstName(firstName));
   dispatch(setLastName(lastName));
   dispatch(setBalance(balance));
+  dispatch(setSaving(saving));
+  dispatch(setCard(card));
   dispatch(setSeller(seller));
   dispatch(setAmountIN(amountIN));
   dispatch(setAmountOUT(amountOUT));
@@ -162,6 +169,18 @@ export const setBalance = (balance) => {
   return {
     type: 'SET_BALANCE',
     payload: balance,
+  };
+};
+export const setSaving = (saving) => {
+  return {
+    type: 'SET_SAVING',
+    payload: saving,
+  };
+};
+export const setCard = (card) => {
+  return {
+    type: 'SET_CARD',
+    payload: card,
   };
 };
 export const setSeller = (seller) => {
