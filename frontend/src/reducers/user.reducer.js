@@ -20,9 +20,9 @@ const initialState = {
   amountOUT: '',
   buyArticles: '',
   operationDate: '',
-  button1IsVisible: true,
-  button2IsVisible: true,
-  button3IsVisible: true,
+  button1IsVisible: false,
+  button2IsVisible: false,
+  button3IsVisible: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -120,17 +120,17 @@ const userReducer = (state = initialState, action) => {
     case 'SET_BUTTON_1_IS_VISIBLE':
       return {
         ...state,
-        button1IsVisble: action.payload,
+        button1IsVisible: action.payload,
       };
     case 'SET_BUTTON_2_IS_VISIBLE':
       return {
         ...state,
-        button2IsVisble: action.payload,
+        button2IsVisible: action.payload,
       };
     case 'SET_BUTTON_3_IS_VISIBLE':
       return {
         ...state,
-        button3IsVisble: action.payload,
+        button3IsVisible: action.payload,
       };
     default:
       return state;

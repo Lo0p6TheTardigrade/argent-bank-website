@@ -1,0 +1,41 @@
+@import '../partial';
+.section-user-container {
+  height: 100%;
+  .error-page-container {
+    @include flex(column, nowrap, center, center, 1rem);
+    height: 60vh;
+    width: 100%;
+    .error-container {
+      @include flex(column, nowrap, center, center, 1rem);
+      height: 180px;
+      width: 100%;
+      .section-user-not-logged {
+        @extend .error-container;
+        .user-not-logged-title-container {
+          @extend .error-container;
+          .user-not-logged-title {
+            color: map-get($color-map, soft-white);
+            font-size: xx-large;
+          }
+        }
+        .user-not-logged-info-container {
+          @extend .error-container;
+          .user-not-logged-info {
+            font-size: large;
+            color: map-get($color-map, soft-white);
+          }
+        }
+        .user-not-logged-link-container {
+          @extend .error-container;
+          a {
+            font-size: small;
+            color: map-get($color-map, soft-white);
+            &:hover {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}

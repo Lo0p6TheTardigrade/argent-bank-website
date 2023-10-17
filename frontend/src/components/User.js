@@ -6,6 +6,7 @@ import Error from './Error';
 import { Link } from 'react-router-dom';
 // import { firstName, lastName } from '../actions/action';
 import { useSelector } from 'react-redux';
+import Error404 from '../pages/Error404';
 
 const User = ({ isVisible, isVisible2, isVisible3 }) => {
   const firstName = useSelector((state) => state.userReducer.firstName);
@@ -45,7 +46,7 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
       </article>
     </section>
   );
-  const bottomComponent = <Error />;
+  const bottomComponent = <Error404 />;
   return <div className="section-user-container">{isLoggedIn ? topComponent : bottomComponent}</div>;
 };
 

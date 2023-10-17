@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"Error.css"}
+{"version":3,"sourceRoot":"","sources":["../../scss/components/Error.scss","../../scss/_partial.scss"],"names":[],"mappings":"AACA,wBACE,YACA,8CCFA,aACA,wBACA,gBDCgC,0BCChC,IDDgD,KAC9C,YACA,WACA,o7BCNF,aACA,wBACA,gBDKkC,OCJlC,YDI0C,OCH1C,IDGkD,KAC9C,aACA,WAKI,gJACE,WACA,mBAKF,8IACE,gBACA,WAKF,0HACE,gBACA,WACA,gIACE","file":"Error.css"}
