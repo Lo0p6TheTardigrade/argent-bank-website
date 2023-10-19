@@ -16,8 +16,19 @@ const Navigation = () => {
   const handleSignOut = () => {
     dispatch(setLoggedOut(true));
     dispatch(setLoggedIn(false));
+    deleteCookie('userToken');
     window.location.href = '/';
   };
+  function deleteCookie(cookieName) {
+    const expirationDate = new Date('Thu, 01 Jan 1970 00:00:00 UTC');
+
+    const cookiePath = '/';
+    const deleteCookieString = `${cookieName}=; expires=${expirationDate.toUTCString()}; path=${cookiePath}`;
+
+    document.cookie = deleteCookieString;
+
+    console.log('Cookie supprimé :', cookieName);
+  }
 
   const defaultDisplay = (
     <Link to="/login">

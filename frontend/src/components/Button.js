@@ -26,9 +26,7 @@ const Button = ({ isVisible, isVisible2, isVisible3 }) => {
       {isVisible2 && (
         <button
           type="submit"
-          className="validation-button"
-          // onClick={}
-        >
+          className="validation-button">
           Save
         </button>
       )}

@@ -1,6 +1,24 @@
 import axios from 'axios';
 
 let userToken;
+function getCookie(cookieName) {
+  const name = cookieName + '=';
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+
+  for (const cookie of cookieArray) {
+    const trimmedCookie = cookie.trim();
+    if (trimmedCookie.indexOf(name) === 0) {
+      let token = trimmedCookie.substring(name.length, trimmedCookie.length);
+      token = token.replace(/['"]+/g, '');
+      return token;
+    }
+  }
+  return null;
+}
+
+export const userTokenCookie = getCookie('userToken');
+
 export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
@@ -11,9 +29,12 @@ export const loginUser = async (credentials, dispatch, navigate) => {
     console.log('credential', credentials);
 
     const tokenJSON = JSON.stringify(token);
-    document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; path=/; domain=localhost;`;
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + 1 * 60 * 60 * 1000);
+    const expiresUTC = expirationDate.toUTCString();
+    document.cookie = `userToken=${encodeURIComponent(tokenJSON)}; expires=${expiresUTC}; path=/; domain=localhost;`;
 
-    profilUser(userToken, dispatch, credentials);
+    profilUser(token, dispatch, credentials);
 
     dispatch(setLoggedIn(true));
     navigate('/home');
@@ -39,12 +60,12 @@ export let amountOUT;
 export let buyArticles;
 export let operationDate;
 
-export const profilUser = async (userToken, dispatch, credentials) => {
+export const profilUser = async (token, dispatch, credentials) => {
   try {
     const config = {
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -82,22 +103,21 @@ function dispatchState(dispatch) {
   dispatch(setBuyArticle(buyArticles));
   dispatch(setOperationDate(operationDate));
 }
-export const updateProfilUser = async (userToken, dispatch, userName) => {
+export const updateProfilUser = async (dispatch, userName, userNameChange) => {
   try {
     const config = {
       headers: {
         Accept: 'application/json',
         Authorization: `Bearer ${userToken}`,
       },
-      body: userName,
+      body: userNameChange,
     };
 
-    const response = await axios.put('http://localhost:3001/api/v1/user/profile', config);
+    console.log('userNC', userNameChange);
+    const response = await axios.put('http://localhost:3001/api/v1/user/profile', userNameChange, config);
+    // userName = response.data.body.userName;
 
-    userName = response.data.body.userName;
-    console.log('dispatching', dispatch(setUserName(userName)), dispatch(setFirstName(firstName)), dispatch(setLastName(lastName)));
-
-    dispatch(setUserName(userName));
+    dispatch(setUserName(userNameChange.userName));
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }

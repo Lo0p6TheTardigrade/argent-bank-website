@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../scss/components/UserProfile.scss';
 import Button from './Button';
 import Account from './Account';
 import { useSelector } from 'react-redux';
+import { updateProfilUser } from '../actions/action';
+import { useDispatch } from 'react-redux';
 
 const UserProfile = ({ isVisible, isVisible2, isVisible3 }) => {
   const userName = useSelector((state) => state.userReducer.userName);
   const firstName = useSelector((state) => state.userReducer.firstName);
   const lastName = useSelector((state) => state.userReducer.lastName);
+  const dispatch = useDispatch();
+
+  const [userNameChange, setUsernameChange] = useState(userName);
+
+  const handleInputChange = (e) => {
+    setUsernameChange(e.target.value);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Appeler la méthode pour mettre à jour le profil utilisateur
+    updateProfilUser(dispatch, userName, { userName: userNameChange });
+  };
+
   return (
     <div className="user-profile-container">
       <div className="user-profile-title-container">
         <h1 className="user-profile-title">Edit user info</h1>
       </div>
-      <form className="user-profile-edit-form">
+      <form
+        className="user-profile-edit-form"
+        onSubmit={handleFormSubmit}>
         <div className="user-profile-edit-form-input-container">
           <label
             htmlFor="userName"
@@ -23,6 +41,8 @@ const UserProfile = ({ isVisible, isVisible2, isVisible3 }) => {
               type="text"
               id="userName"
               className="user-profile-edit-userName"
+              value={userNameChange.userName}
+              onChange={handleInputChange}
               placeholder={userName}
             />
           </label>
