@@ -3,13 +3,14 @@ import '../scss/components/UserProfile.scss';
 import Button from './Button';
 import Account from './Account';
 import { useSelector } from 'react-redux';
-import { updateProfilUser } from '../actions/action';
+import { updateProfilUser, updateProfilUserUseCookie } from '../actions/action';
 import { useDispatch } from 'react-redux';
 
 const UserProfile = ({ isVisible, isVisible2, isVisible3 }) => {
   const userName = useSelector((state) => state.userReducer.userName);
   const firstName = useSelector((state) => state.userReducer.firstName);
   const lastName = useSelector((state) => state.userReducer.lastName);
+  const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const dispatch = useDispatch();
 
   const [userNameChange, setUsernameChange] = useState(userName);
@@ -20,7 +21,14 @@ const UserProfile = ({ isVisible, isVisible2, isVisible3 }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    updateProfilUser(dispatch, userName, { userName: userNameChange });
+    const userTokenCookie = document.cookie.includes('userToken');
+    if (userTokenCookie) {
+      updateProfilUserUseCookie(dispatch, userName, { userName: userNameChange });
+      console.log('is cookie true', userTokenCookie);
+    } else if (isLoggedIn === true) {
+      console.log('isLoggedIn true', isLoggedIn);
+      updateProfilUser(dispatch, userName, { userName: userNameChange });
+    }
   };
 
   return (

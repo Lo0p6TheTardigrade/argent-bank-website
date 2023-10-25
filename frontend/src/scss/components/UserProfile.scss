@@ -1,10 +1,6 @@
 @import '../partial';
 .user-profile-container {
   @include flex(column, nowrap, initial, center, initial);
-  //   .user-profile-title-container {
-  //     .user-profile-title {
-  //     }
-  //   }
   .user-profile-edit-form {
     @include flex(column, nowrap, initial, center, initial);
     .user-profile-edit-form-input-container {

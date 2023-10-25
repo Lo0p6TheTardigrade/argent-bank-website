@@ -7,11 +7,13 @@ const Button = ({ isVisible, isVisible2, isVisible3 }) => {
     <div className="btn-container">
       {isVisible && <button className="transaction-button">View transactions</button>}
       {isVisible2 && (
-        <button
-          type="submit"
-          className="validation-button">
-          Save
-        </button>
+        <Link to="/home">
+          <button
+            type="submit"
+            className="validation-button">
+            Save
+          </button>
+        </Link>
       )}
       {isVisible3 && (
         <Link to="/home">

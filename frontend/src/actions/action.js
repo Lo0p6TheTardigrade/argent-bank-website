@@ -65,6 +65,13 @@ export const profilUser = async (token, dispatch, credentials) => {
     firstName = response.data.body.firstName;
     lastName = response.data.body.lastName;
 
+    const userData = {
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+    };
+    localStorage.setItem('user', JSON.stringify(userData));
+
     dispatchState(dispatch);
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
@@ -86,7 +93,22 @@ export const updateProfilUser = async (dispatch, userName, userNameChange) => {
     };
 
     const response = await axios.put('http://localhost:3001/api/v1/user/profile', userNameChange, config);
-    // userName = response.data.body.userName;
+
+    dispatch(setUserName(userNameChange.userName));
+  } catch (error) {
+    console.log('Erreur lors de la récupération du profil utilisateur :', error);
+  }
+};
+export const updateProfilUserUseCookie = async (dispatch, userName, userNameChange) => {
+  try {
+    const config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${userTokenCookie}`,
+      },
+      body: userNameChange,
+    };
+    const response = await axios.put('http://localhost:3001/api/v1/user/profile', userNameChange, config);
 
     dispatch(setUserName(userNameChange.userName));
   } catch (error) {

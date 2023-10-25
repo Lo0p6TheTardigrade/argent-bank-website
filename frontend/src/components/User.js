@@ -4,12 +4,10 @@ import Button from './Button';
 import Account from './Account';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Error404 from '../pages/Error404';
 
 const User = ({ isVisible, isVisible2, isVisible3 }) => {
   const firstName = useSelector((state) => state.userReducer.firstName);
   const lastName = useSelector((state) => state.userReducer.lastName);
-  const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const jsx = (
     <section className="section-user">
       <div className="header">
@@ -43,8 +41,7 @@ const User = ({ isVisible, isVisible2, isVisible3 }) => {
       </article>
     </section>
   );
-  const error = <Error404 />;
-  return <div className="section-user-container">{isLoggedIn ? jsx : error}</div>;
+  return <div className="section-user-container">{jsx}</div>;
 };
 
 export default User;
