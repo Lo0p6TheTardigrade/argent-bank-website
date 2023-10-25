@@ -1,11 +1,7 @@
 import React from 'react';
 import '../scss/components/Account.scss';
-import { useSelector } from 'react-redux';
 
 const Account = ({ isVisible, isVisible2, isVisible3 }) => {
-  let balance = useSelector((state) => state.userReducer.balance).toLocaleString('en-US', { minimumFractionDigits: 2 });
-  let saving = useSelector((state) => state.userReducer.saving).toLocaleString('en-US', { minimumFractionDigits: 2 });
-  let card = useSelector((state) => state.userReducer.card).toLocaleString('en-US', { minimumFractionDigits: 2 });
   const character = '$';
   return (
     <div className="account-container">
@@ -13,10 +9,7 @@ const Account = ({ isVisible, isVisible2, isVisible3 }) => {
         <div className="account-content-wrapper">
           <div className="account-text-info-balance">
             <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-            <p className="account-amount">
-              {character}
-              {balance}
-            </p>
+            <p className="account-amount">{character}2,082.79</p>
             <p className="account-amount-description">Available Balance</p>
           </div>
           <div className="carret-right-container">
@@ -35,10 +28,7 @@ const Account = ({ isVisible, isVisible2, isVisible3 }) => {
         <div className="account-content-wrapper">
           <div className="account-text-info-balance">
             <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-            <p className="account-amount">
-              {character}
-              {saving}
-            </p>
+            <p className="account-amount">{character}10,928.42</p>
             <p className="account-amount-description">Available Balance</p>
           </div>
           <div className="carret-right-container">
@@ -57,10 +47,7 @@ const Account = ({ isVisible, isVisible2, isVisible3 }) => {
         <div className="account-content-wrapper">
           <div className="account-text-info-balance">
             <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-            <p className="account-amount">
-              {character}
-              {card}
-            </p>
+            <p className="account-amount">{character}184.30</p>
             <p className="account-amount-description">Current Balance</p>
           </div>
           <div className="carret-right-container">

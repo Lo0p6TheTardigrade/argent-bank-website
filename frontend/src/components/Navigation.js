@@ -11,7 +11,6 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const userName = useSelector((state) => state.userReducer.userName);
-  console.log(userName);
 
   const handleSignOut = () => {
     dispatch(setLoggedOut(true));

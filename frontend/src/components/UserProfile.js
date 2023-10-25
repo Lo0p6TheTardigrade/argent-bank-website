@@ -20,7 +20,6 @@ const UserProfile = ({ isVisible, isVisible2, isVisible3 }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Appeler la méthode pour mettre à jour le profil utilisateur
     updateProfilUser(dispatch, userName, { userName: userNameChange });
   };
 

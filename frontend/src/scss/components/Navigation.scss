@@ -2,9 +2,9 @@
 .navigation-container {
   .navigation {
     .nav-list-container {
-      @include flex(row, nowrap, initial, initial, 0.5rem);
+      @include flex(row, nowrap, initial, initial, 0);
       .nav-list {
-        @include flex(row, nowrap, initial, center, 3px);
+        @include flex(row, nowrap, initial, center, 0.5rem);
         list-style: none;
         .icon {
           width: 16px;
