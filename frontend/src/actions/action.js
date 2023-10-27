@@ -1,17 +1,14 @@
 import axios from 'axios';
 
-let userToken;
+// FUNCTION FOR COOKIE
 function getCookie(cookieName) {
-  const name = cookieName + '=';
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(';');
+  const decodedCookie = document.cookie.split(';');
 
-  for (const cookie of cookieArray) {
-    const trimmedCookie = cookie.trim();
-    if (trimmedCookie.indexOf(name) === 0) {
-      let token = trimmedCookie.substring(name.length, trimmedCookie.length);
-      token = token.replace(/['"]+/g, '');
-      return token;
+  for (let i = 0; i < decodedCookie.length; i++) {
+    const cookie = decodedCookie[i].trim();
+    const [name, value] = cookie.split('=');
+    if (name === cookieName) {
+      return decodeURIComponent(value);
     }
   }
   return null;
@@ -19,15 +16,16 @@ function getCookie(cookieName) {
 
 export const userTokenCookie = getCookie('userToken');
 
+// LOGIN METHOD POST
 export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
 
     const responseData = response.data.body.token;
     const token = responseData;
-    userToken = responseData;
+    // let userToken = responseData;
 
-    const tokenJSON = JSON.stringify(token);
+    const tokenJSON = token;
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 1 * 60 * 60 * 1000);
     const expiresUTC = expirationDate.toUTCString();
@@ -46,10 +44,32 @@ export const loginUser = async (credentials, dispatch, navigate) => {
   }
 };
 
+// VARIABLES
 export let userName;
 export let firstName;
 export let lastName;
 
+// FUNCTION USER DATA FOR METHOD POST
+function userDataPOST(firstName, lastName) {
+  const userData = {
+    firstName: firstName,
+    lastName: lastName,
+    userName: userName,
+  };
+  localStorage.setItem('user', JSON.stringify(userData));
+}
+
+// FUNCTION USER DATA FOR METHOD PUT
+function userDataPUT(userNameChange, firstName, lastName) {
+  const userData = {
+    firstName: firstName,
+    lastName: lastName,
+    userName: userNameChange.userName,
+  };
+  localStorage.setItem('user', JSON.stringify(userData));
+}
+
+// PROFILE USER METHOD POST
 export const profilUser = async (token, dispatch, credentials) => {
   try {
     const config = {
@@ -65,50 +85,38 @@ export const profilUser = async (token, dispatch, credentials) => {
     firstName = response.data.body.firstName;
     lastName = response.data.body.lastName;
 
-    const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-    };
-    localStorage.setItem('user', JSON.stringify(userData));
+    userDataPOST(firstName, lastName);
 
     dispatchState(dispatch);
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }
 };
+// FUNCTION
 function dispatchState(dispatch) {
   dispatch(setUserName(userName));
   dispatch(setFirstName(firstName));
   dispatch(setLastName(lastName));
 }
+function dispatchFirstLastName(dispatch) {
+  dispatch(setFirstName(firstName));
+  dispatch(setLastName(lastName));
+}
+console.log(userTokenCookie);
+// UPDATE PROFILE METHOD PUT
 export const updateProfilUser = async (dispatch, userName, userNameChange) => {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${userTokenCookie}`,
+    },
+    body: userNameChange,
+  };
   try {
-    const config = {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${userToken}`,
-      },
-      body: userNameChange,
-    };
+    await axios.put('http://localhost:3001/api/v1/user/profile', config);
 
-    const response = await axios.put('http://localhost:3001/api/v1/user/profile', userNameChange, config);
-
-    dispatch(setUserName(userNameChange.userName));
-  } catch (error) {
-    console.log('Erreur lors de la récupération du profil utilisateur :', error);
-  }
-};
-export const updateProfilUserUseCookie = async (dispatch, userName, userNameChange) => {
-  try {
-    const config = {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${userTokenCookie}`,
-      },
-      body: userNameChange,
-    };
-    const response = await axios.put('http://localhost:3001/api/v1/user/profile', userNameChange, config);
+    userDataPUT(userNameChange, firstName, lastName);
+    dispatchFirstLastName(dispatch);
 
     dispatch(setUserName(userNameChange.userName));
   } catch (error) {

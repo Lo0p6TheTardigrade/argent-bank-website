@@ -19,7 +19,7 @@ const setModalRoot = () => {
 function App() {
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const firstName = useSelector((state) => state.userReducer.firstName);
-  const lastName = useSelector((state) => state.userReducer);
+  const lastName = useSelector((state) => state.userReducer.lastName);
   const userName = useSelector((state) => state.userReducer.userName);
   useEffect(() => {
     setModalRoot();

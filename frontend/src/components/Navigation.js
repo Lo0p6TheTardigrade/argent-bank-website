@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../scss/components/Navigation.scss';
 import userIcon from '../assets/circle-user-solid.svg';
@@ -19,23 +19,14 @@ const Navigation = () => {
     deleteCookie('userToken');
     window.location.href = '/';
   };
-  useEffect(() => {
-    whereToGo();
-    const userData = localStorage.getItem('user');
 
-    if (userData) {
-      const { userName } = JSON.parse(userData);
-      dispatch(setUserName(userName));
-      console.log(userName);
-    }
-  }, []);
   async function whereToGo() {
     const userTokenCookie = document.cookie.includes('userToken');
 
     if (userTokenCookie) {
       dispatch(setLoggedIn(true));
       dispatch(setUserName(userName));
-      console.log(isLoggedIn, userTokenCookie);
+      console.log('isLoggedIn is :' + isLoggedIn, 'userTokenCookie is :' + userTokenCookie);
     } else {
       dispatch(setUserName(''));
       dispatch(setLoggedIn(isLoggedIn));
@@ -49,8 +40,6 @@ const Navigation = () => {
     const deleteCookieString = `${cookieName}=; expires=${expirationDate.toUTCString()}; path=${cookiePath}`;
 
     document.cookie = deleteCookieString;
-
-    console.log('Cookie supprimé :', cookieName);
   }
 
   const defaultDisplay = (
@@ -81,7 +70,9 @@ const Navigation = () => {
     </Link>
   );
   return (
-    <div className="navigation-container">
+    <div
+      className="navigation-container"
+      onLoad={whereToGo}>
       <nav className="navigation">
         <ul className="nav-list-container">{!isLoggedIn ? defaultDisplay : signoutDisplayed}</ul>
       </nav>
