@@ -8,7 +8,6 @@ function getCookie(cookieName) {
     const cookie = cookieArray[i];
     const [name, value] = cookie.split('=');
     if (name === cookieName) {
-      // Supprimez les guillemets s'ils existent autour de la valeur du cookie
       const token = value.startsWith('"') && value.endsWith('"') ? value.slice(1, -1) : value;
       return token;
     }

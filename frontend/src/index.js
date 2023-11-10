@@ -11,9 +11,7 @@ const store = configureStore({
   reducer: rootReducer,
   devTools: true,
 });
-// const state = store.getState();
-// console.log(state.userReducer.isLoggedIn);
-// const userLog = state.userReducer.isLoggedIn;
+
 store.subscribe(() => {});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -15,12 +15,7 @@ const Button = ({ isVisible, isVisible2, isVisible3 }) => {
       )}
       {isVisible3 && (
         <Link to="/home">
-          <button
-            className="cancel-button"
-            // onClick={}
-          >
-            Cancel
-          </button>
+          <button className="cancel-button">Cancel</button>
         </Link>
       )}
     </div>
