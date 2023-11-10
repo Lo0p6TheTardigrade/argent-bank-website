@@ -65,14 +65,8 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-      produces:
-        - application/json
+      #produces:
+       # - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -90,11 +84,6 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
         - in: body
           name: body
           description: Update user profile attributes
@@ -110,113 +99,6 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
-        '500':
-          description: Internal Server Error
-
-  /accounts/:accountId:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: User Transactions API
-      description: API for fetching all transactions list
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: User transactions list retrieved successully
-          schema:
-            $ref: '#/definitions/TransactionsResponse'
-        '401':
-          description: User not authorized
-        '500':
-          description: Internal Server Error
-  /accounts/:accountId/:transactionId:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: User Transactions API
-      description: API for fetching all details of a transaction by its ID
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transactions retrieved successully
-          schema:
-            $ref: '#/definitions/TransactionsResponse'
-        '401':
-          description: User not authorized
-        '500':
-          description: Internal Server Error
-  /accounts/:accountId/:transactionId/edit:
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Update Transactions API
-      description: API for editing a transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-        - in: body
-          name: body
-          description: Transaction Payload
-          required: true
-          schema:
-            $ref: '#/definitions/SingleTransactionResponse'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transaction updated successully
-          schema:
-            $ref: '#/definitions/SingleTransactionResponse'
-        '401':
-          description: User not authorized
-        '500':
-          description: Internal Server Error
-  /accounts/:accountId/:transactionId/delete:
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Delete Transaction API
-      description: API for deleting a transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transaction deleted successully
-          schema:
-            $ref: '#/definitions/SingleTransactionResponse'
-        '401':
-          description: User not authorized
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -239,6 +121,9 @@ definitions:
       lastName:
         type: string
         description: user last name
+      userName:
+        type: string
+        description: user public name
   Login:
     properties:
       email:
@@ -269,25 +154,5 @@ definitions:
   UserProfile:
     type: object
     properties:
-      firstName:
-        type: string
-      lastName:
-        type: string
-  TransactionsResponse:
-    type: object
-    properties:
-      message:
-        type: string
-      transactions:
-        type: array
-        items:
-          type: object
-  SingleTransactionResponse:
-    type: object
-    properties:
-      id:
-        type: string
-      amount:
-        type: number
-      category:
+      userName:
         type: string

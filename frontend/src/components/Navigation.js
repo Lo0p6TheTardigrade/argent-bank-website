@@ -26,7 +26,6 @@ const Navigation = () => {
     if (userTokenCookie) {
       dispatch(setLoggedIn(true));
       dispatch(setUserName(userName));
-      console.log('isLoggedIn is :' + isLoggedIn, 'userTokenCookie is :' + userTokenCookie);
     } else {
       dispatch(setUserName(''));
       dispatch(setLoggedIn(isLoggedIn));

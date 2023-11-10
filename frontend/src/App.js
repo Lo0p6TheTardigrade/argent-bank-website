@@ -16,11 +16,13 @@ const setModalRoot = () => {
   const rootElement = document.getElementById('root');
   Modal.setAppElement(rootElement);
 };
+
 function App() {
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const firstName = useSelector((state) => state.userReducer.firstName);
   const lastName = useSelector((state) => state.userReducer.lastName);
   const userName = useSelector((state) => state.userReducer.userName);
+
   useEffect(() => {
     setModalRoot();
     const userData = localStorage.getItem('user');
@@ -32,26 +34,12 @@ function App() {
       dispatch(setUserName(userName));
     }
   }, []);
-  const dispatch = useDispatch();
-  function whereToGo() {
-    const userTokenCookie = document.cookie.includes('userToken');
 
-    if (isLoggedIn && userTokenCookie) {
-      dispatch(setLoggedIn(true));
-      dispatch(setFirstName(firstName));
-      dispatch(setLastName(lastName));
-      dispatch(setUserName(userName));
-      <Route
-        path="/home"
-        element={<Navigate to="/home" />}
-      />;
-    } else {
-      <Route
-        path="*"
-        element={<Navigate to="/login" />}
-      />;
-    }
-  }
+  const dispatch = useDispatch();
+
+  const userTokenCookieExist = document.cookie.includes('userToken');
+
+  const isAuthorized = isLoggedIn || userTokenCookieExist;
 
   return (
     <div className="App">
@@ -66,7 +54,7 @@ function App() {
               path="/login"
               element={<Signin />}
             />
-            {whereToGo ? (
+            {isAuthorized ? (
               <>
                 <Route
                   path="/home"

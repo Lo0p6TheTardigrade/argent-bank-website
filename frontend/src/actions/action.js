@@ -1,31 +1,29 @@
 import axios from 'axios';
 
-// FUNCTION FOR COOKIE
 function getCookie(cookieName) {
-  const decodedCookie = document.cookie.split(';');
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split('; ');
 
-  for (let i = 0; i < decodedCookie.length; i++) {
-    const cookie = decodedCookie[i].trim();
+  for (let i = 0; i < cookieArray.length; i++) {
+    const cookie = cookieArray[i];
     const [name, value] = cookie.split('=');
     if (name === cookieName) {
-      return decodeURIComponent(value);
+      // Supprimez les guillemets s'ils existent autour de la valeur du cookie
+      const token = value.startsWith('"') && value.endsWith('"') ? value.slice(1, -1) : value;
+      return token;
     }
   }
   return null;
 }
 
-export const userTokenCookie = getCookie('userToken');
-
-// LOGIN METHOD POST
 export const loginUser = async (credentials, dispatch, navigate) => {
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', credentials);
 
     const responseData = response.data.body.token;
     const token = responseData;
-    // let userToken = responseData;
 
-    const tokenJSON = token;
+    const tokenJSON = JSON.stringify(token);
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + 1 * 60 * 60 * 1000);
     const expiresUTC = expirationDate.toUTCString();
@@ -44,32 +42,10 @@ export const loginUser = async (credentials, dispatch, navigate) => {
   }
 };
 
-// VARIABLES
 export let userName;
 export let firstName;
 export let lastName;
 
-// FUNCTION USER DATA FOR METHOD POST
-function userDataPOST(firstName, lastName) {
-  const userData = {
-    firstName: firstName,
-    lastName: lastName,
-    userName: userName,
-  };
-  localStorage.setItem('user', JSON.stringify(userData));
-}
-
-// FUNCTION USER DATA FOR METHOD PUT
-function userDataPUT(userNameChange, firstName, lastName) {
-  const userData = {
-    firstName: firstName,
-    lastName: lastName,
-    userName: userNameChange.userName,
-  };
-  localStorage.setItem('user', JSON.stringify(userData));
-}
-
-// PROFILE USER METHOD POST
 export const profilUser = async (token, dispatch, credentials) => {
   try {
     const config = {
@@ -82,46 +58,50 @@ export const profilUser = async (token, dispatch, credentials) => {
     const response = await axios.post('http://localhost:3001/api/v1/user/profile', credentials, config);
 
     userName = response.data.body.userName;
+
     firstName = response.data.body.firstName;
     lastName = response.data.body.lastName;
 
-    userDataPOST(firstName, lastName);
+    const userData = {
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+    };
+    localStorage.setItem('user', JSON.stringify(userData));
 
     dispatchState(dispatch);
   } catch (error) {
     console.log('Erreur lors de la récupération du profil utilisateur :', error);
   }
 };
-// FUNCTION
 function dispatchState(dispatch) {
   dispatch(setUserName(userName));
   dispatch(setFirstName(firstName));
   dispatch(setLastName(lastName));
 }
-function dispatchFirstLastName(dispatch) {
-  dispatch(setFirstName(firstName));
-  dispatch(setLastName(lastName));
-}
-console.log(userTokenCookie);
-// UPDATE PROFILE METHOD PUT
-export const updateProfilUser = async (dispatch, userName, userNameChange) => {
-  const config = {
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${userTokenCookie}`,
-    },
-    body: userNameChange,
+export const updateProfilUser = (userNameChange) => {
+  return async (dispatch) => {
+    const userTokenCookie = getCookie('userToken').trim();
+    try {
+      const config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${userTokenCookie}`,
+        },
+      };
+
+      const response = await axios.put('http://localhost:3001/api/v1/user/profile', { userName: userNameChange }, config);
+
+      if (response.status === 200) {
+        const userData = JSON.parse(localStorage.getItem('user')) || {};
+        userData.userName = userNameChange;
+        localStorage.setItem('user', JSON.stringify(userData));
+        dispatch(setUserName(userNameChange));
+      }
+    } catch (error) {
+      console.log('Erreur lors de la récupération du profil utilisateur :', error);
+    }
   };
-  try {
-    await axios.put('http://localhost:3001/api/v1/user/profile', config);
-
-    userDataPUT(userNameChange, firstName, lastName);
-    dispatchFirstLastName(dispatch);
-
-    dispatch(setUserName(userNameChange.userName));
-  } catch (error) {
-    console.log('Erreur lors de la récupération du profil utilisateur :', error);
-  }
 };
 
 export const setDisplayedItems = (items) => {
@@ -131,6 +111,7 @@ export const setDisplayedItems = (items) => {
   };
 };
 export const setUserName = (userName) => {
+  console.log(userName);
   return {
     type: 'SET_USER_NAME',
     payload: userName,
@@ -166,5 +147,23 @@ export const setIsOpen = (isOpen) => {
   return {
     type: 'SET_IS_OPEN',
     payload: isOpen,
+  };
+};
+export const setModal1IsOpen = (modal1IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_1',
+    payload: modal1IsOpen,
+  };
+};
+export const setModal2IsOpen = (modal2IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_2',
+    payload: modal2IsOpen,
+  };
+};
+export const setModal3IsOpen = (modal3IsOpen) => {
+  return {
+    type: 'SET_IS_OPEN_MODAL_3',
+    payload: modal3IsOpen,
   };
 };
