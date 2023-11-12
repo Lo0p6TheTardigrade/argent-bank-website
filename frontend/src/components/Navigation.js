@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../scss/components/Navigation.scss';
 import userIcon from '../assets/circle-user-solid.svg';
 import signOutIcon from '../assets/right-from-bracket-solid.svg';
@@ -12,12 +12,13 @@ const Navigation = () => {
   const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
   const isLoggedOut = useSelector((state) => state.userReducer.isLoggedOut);
   const userName = useSelector((state) => state.userReducer.userName);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     dispatch(setLoggedOut(isLoggedOut));
-    dispatch(setLoggedIn(isLoggedIn));
+    dispatch(setLoggedIn(!isLoggedIn));
     deleteCookie('userToken');
-    window.location.href = '/';
+    navigate('/');
   };
 
   async function whereToGo() {
@@ -54,19 +55,17 @@ const Navigation = () => {
     </Link>
   );
   const signoutDisplayed = (
-    <Link>
-      <li
-        className="nav-list"
-        onClick={handleSignOut}>
-        <p className="user-name">{userName}</p>
-        <img
-          src={signOutIcon}
-          alt="sign out icon"
-          className="icon sign-out-icon"
-        />
-        <p className="sign signout-text">Sign Out</p>
-      </li>
-    </Link>
+    <li
+      className="nav-list"
+      onClick={handleSignOut}>
+      <p className="user-name">{userName}</p>
+      <img
+        src={signOutIcon}
+        alt="sign out icon"
+        className="icon sign-out-icon"
+      />
+      <p className="sign signout-text">Sign Out</p>
+    </li>
   );
   return (
     <div

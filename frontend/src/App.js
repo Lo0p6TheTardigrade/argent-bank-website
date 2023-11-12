@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import Profile from './pages/Profile';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setFirstName, setLastName, setLoggedIn, setUserName } from './actions/action';
+import { setFirstName, setLastName, setUserName } from './actions/action';
 
 const setModalRoot = () => {
   const rootElement = document.getElementById('root');
