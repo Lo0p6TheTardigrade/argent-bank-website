@@ -3,9 +3,15 @@
   .section,
   .features {
     @include flex(column, nowrap, initial, initial, initial);
+    @media screen and (min-width: 920px) {
+      @include flex(row, nowrap, initial, initial, initial);
+    }
     .feature-item {
       @include flex(column, nowrap, initial, center, initial);
       padding: 2.5rem;
+      @media screen and (min-width: 920px) {
+        width: 30%;
+      }
       .feature-icon {
         width: 100px;
         border: 10px solid #00bc77;
